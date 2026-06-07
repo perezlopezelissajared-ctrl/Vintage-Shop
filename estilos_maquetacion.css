@@ -54,8 +54,6 @@ header .container {
     height: 75px; /* Tamaño del logo */
     width: auto;
     display: block;
-    border: 2px solid #F5EDD9;
-    border-radius: 58%;
 }
 
 /* --- 3. NAVEGACIÓN Y MENÚ --- */
