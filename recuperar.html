@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Recuperar Contraseña</title>
+    <link rel="stylesheet" href="estilos2.css">
+    link rel="icon" type="image/png" href="favicon/logo.png"><
+</head>
+<body>
+    <!-- Contenedor del formulario -->
+    <div class="login-box">
+        <h2>Recuperar Contraseña</h2>
+         <form onsubmit="return recuperar()" id="formularioRecuperar">
+            <label for="emailRecuperar">Ingresa tu correo registrado</label>
+            <input type="email" id="emailRecuperar" name="emailRecuperar" required />
+            
+            <input type="submit" value="Recuperar" />
+            <div id="resultado" style="display:none; margin-top:15px; text-align:center;"></div>
+        </form>
+        
+        <div class="extra">
+            <p><a href="login.html">Volver al login</a></p>
+        </div>
+    </div>
+
+<script>
+function recuperar(){
+  let emailInput = document.getElementById('emailRecuperar').value;
+  let emailGuardado = localStorage.getItem('emailRegistrado');
+  let usuarioGuardado = localStorage.getItem('user');
+  let passGuardada = localStorage.getItem('pass');
+  
+  let resultado = document.getElementById('resultado');
+  
+  if(emailInput === emailGuardado){
+    resultado.innerHTML = `
+      <p style="color:green;">Correo verificado ✓</p>
+      <p><strong>Usuario:</strong> ${usuarioGuardado}</p>
+      <p><strong>Contraseña:</strong> ${passGuardada}</p>
+    `;
+    resultado.style.display = "block";
+  } else {
+    resultado.innerHTML = `<p style="color:red;">Ese correo no está registrado</p>`;
+    resultado.style.display = "block";
+  }
+  
+  return false;
+}
+</script>
+</body>
+</html> 

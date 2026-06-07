@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Crear Cuenta</title>
+    <link rel="stylesheet" href="estilos2.css">
+    <link rel="icon" type="image/png" href="favicon/logo.png">
+</head>
+<body>
+    <!-- Contenedor del formulario -->
+    <div class="login-box">
+        <h2>Crear Cuenta Nueva</h2>
+         <form onsubmit="return registrar()" id="formularioRegistro">
+            <label for="nuevoUsuario">Usuario</label>
+            <input type="text" id="nuevoUsuario" name="nuevoUsuario" required />
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+            
+            <label for="nuevaClave">Contraseña</label>
+            <input type="password" id="nuevaClave" name="nuevaClave" required minlength="6"/>
+            
+            <label for="confirmarClave">Confirmar contraseña</label>
+            <input type="password" id="confirmarClave" name="confirmarClave" required />
+            
+            <input type="submit" value="Registrarse" />
+            <p id="mensaje" style="display:none; color:green; margin-top:10px; text-align:center;"></p>
+        </form>
+    </div>
+
+<script>
+function registrar(){
+  let usuario = document.getElementById('nuevoUsuario').value;
+  let email = document.getElementById('email').value;
+  let clave = document.getElementById('nuevaClave').value;
+  let confirmar = document.getElementById('confirmarClave').value;
+  
+  if(clave !== confirmar){
+    alert("Las contraseñas no coinciden");
+    return false;
+  }
+  
+  if(clave.length < 6){
+    alert("La contraseña debe tener mínimo 6 caracteres");
+    return false;
+  }
+  
+ 
+  localStorage.setItem('user', usuario);
+  localStorage.setItem('pass', clave);
+  localStorage.setItem('emailRegistrado', email); // Guardamos email para recuperar
+  
+  document.getElementById('mensaje').innerText = "¡Cuenta creada! Redirigiendo al login...";
+  document.getElementById('mensaje').style.display = "block";
+  
+  setTimeout(() => {
+    window.location.href = "login.html";
+  }, 1500);
+  
+  return false;
+}
+</script>
+</body>
+</html>
